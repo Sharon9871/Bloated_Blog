@@ -5,34 +5,20 @@ let clicks = 0;
 // Find elements on the page
 const energyCounter = document.getElementById("energyCounter");
 const clickCounter = document.getElementById("clickCounter");
-const planetCounter = document.getElementById("planetCounter");
 const message = document.getElementById("message");
 
 const energyButton = document.getElementById("energyButton");
-const themeButton = document.getElementById("themeButton");
 const surpriseButton = document.getElementById("surpriseButton");
 
-// Button 1: deliberately pointless repeated updates
+// Button 1: simplified energy updates
 energyButton.addEventListener("click", function () {
-  for (let i = 0; i < 100; i++) {
-    energy += 1;
+    energy += 100;
     energyCounter.textContent = energy;
-  }
 
-  clicks += 1;
-  clickCounter.textContent = clicks;
-  message.textContent = "Congratulations! You generated 100 energy points.";
-});
+    clicks += 1;
+    clickCounter.textContent = clicks;
 
-// Button 2: repeatedly changes styles
-themeButton.addEventListener("click", function () {
-  clicks += 1;
-  clickCounter.textContent = clicks;
-
-  document.body.style.filter =
-    "hue-rotate(" + Math.floor(Math.random() * 360) + "deg)";
-
-  message.textContent = "The entire website has coloured. Again.";
+    message.textContent = "You generated 100 energy points.";
 });
 
 // Button 3: randomly changes text
@@ -53,16 +39,6 @@ surpriseButton.addEventListener("click", function () {
   clicks += 1;
   clickCounter.textContent = clicks;
 });
-
-// Every half-second, do something unnecessary.
-setInterval(function () {
-  planetCounter.textContent = Math.floor(95 + Math.random() * 6);
-
-  // Deliberately cause a visual update.
-  document.querySelectorAll(".card").forEach(function (card) {
-    card.style.borderRadius = Math.floor(Math.random() * 50) + "px";
-  });
-}, 500);
 
 // Add listeners to every card button.
 document.querySelectorAll(".card-button").forEach(function (button) {
